@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Music Concert Registration - Styled</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- External CSS Linking -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>🎵 Live Music Concert 2026 🎵</h1>
+        <p>Experience the Rhythm of Life!</p>
+    </header>
+
+    <div class="container">
+
+        <!-- Media Section -->
+        <div class="media-section">
+
+            <img src="banner.png" alt="Music Concert Banner">
+
+            <h3>Promo Video</h3>
+            <video controls>
+                <source src="promotional.mp4" type="video/mp4">
+            </video>
+
+            <h3>Intro Music</h3>
+            <audio controls>
+                <source src="intro.mp3" type="audio/mpeg">
+            </audio>
+
+        </div>
+
+        <!-- Form Section -->
+        <div class="form-section">
+
+            <h2>Register Now</h2>
+
+            <form>
+
+                <input type="text" placeholder="Full Name" required>
+
+                <input type="email" placeholder="Email Address" required>
+
+                <input type="date" required>
+
+                <div class="radio-group">
+                    <label><input type="radio" name="gender" required> Male</label>
+                    <label><input type="radio" name="gender"> Female</label>
+                    <label><input type="radio" name="gender"> Other</label>
+                </div>
+
+                <select required>
+                    <option value="">Select Ticket Type</option>
+                    <option>General</option>
+                    <option>VIP</option>
+                    <option>Backstage</option>
+                </select>
+
+                <textarea placeholder="Additional Comments"></textarea>
+
+                <input type="file" required>
+
+                <button type="submit">Register</button>
+
+            </form>
+        </div>
+
+    </div>
+
+</body>
+</html>

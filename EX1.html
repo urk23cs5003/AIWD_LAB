@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Music Concert Registration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+    <h1>🎵 Live Music Concert 2026 🎵</h1>
+    <h2>Register Now!</h2>
+
+    <!-- Event Banner Image -->
+    <img src="banner.png" alt="Music Concert Banner" width="100%">
+
+    <br><br>
+
+    <!-- Promotional Video -->
+    <h3>Watch Our Promo Video</h3>
+    <video width="600" controls>
+        <source src="promotional.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <br><br>
+
+    <!-- Intro Audio -->
+    <h3>Concert Intro Music</h3>
+    <audio controls>
+        <source src="Intro.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag.
+    </audio>
+
+    <hr>
+
+    <!-- Registration Form -->
+    <h2>Music Concert Registration Form</h2>
+
+    <form action="#" method="post">
+
+        <label>Full Name:</label><br>
+        <input type="text" name="fullname" required><br><br>
+
+        <label>Email Address:</label><br>
+        <input type="email" name="email" required><br><br>
+
+        <label>Date of Birth:</label><br>
+        <input type="date" name="dob" required><br><br>
+
+        <label>Gender:</label><br>
+        <input type="radio" name="gender" value="Male" required> Male
+        <input type="radio" name="gender" value="Female"> Female
+        <input type="radio" name="gender" value="Other"> Other
+        <br><br>
+
+        <label>Ticket Type:</label><br>
+        <select name="ticket" required>
+            <option value="">--Select Ticket Type--</option>
+            <option value="General">General</option>
+            <option value="VIP">VIP</option>
+            <option value="Backstage">Backstage Pass</option>
+        </select>
+        <br><br>
+
+        <label>Additional Comments:</label><br>
+        <textarea name="comments" rows="4" cols="40"></textarea>
+        <br><br>
+
+        <label>Upload ID Proof:</label><br>
+        <input type="file" name="idproof" accept=".jpg,.png,.pdf" required>
+        <br><br>
+
+        <input type="submit" value="Register">
+
+    </form>
+
+</body>
+</html>

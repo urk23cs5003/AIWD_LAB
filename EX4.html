@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Music Concert - DOM Version</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #1e3c72, #2a5298);
+    color: white;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    background: white;
+    color: black;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+input, select {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background: #1e3c72;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #2a5298;
+}
+
+.result {
+    margin-top: 15px;
+    font-weight: bold;
+    color: green;
+}
+</style>
+
+<script>
+window.onload = function() {
+    document.getElementById("welcome").innerHTML =
+        "Welcome to Live Music Concert 2026 🎵";
+};
+
+// onkeyup event
+function showName() {
+    let name = document.getElementById("name").value;
+    document.getElementById("displayName").innerHTML =
+        "Hello, " + name;
+}
+
+// onchange event
+function updatePrice() {
+    let ticket = document.getElementById("ticket").value;
+    let priceField = document.getElementById("price");
+
+    if (ticket === "General") priceField.value = 500;
+    else if (ticket === "VIP") priceField.value = 1000;
+    else if (ticket === "Backstage") priceField.value = 2000;
+}
+
+// onclick event + calculation
+function calculateTotal() {
+    let price = parseInt(document.getElementById("price").value);
+    let quantity = parseInt(document.getElementById("quantity").value);
+
+    if (!isNaN(price) && !isNaN(quantity)) {
+        let total = price * quantity;
+        document.querySelector(".result").innerHTML =
+            "Total Amount: ₹ " + total;
+    }
+}
+
+// onsubmit event
+function submitForm(event) {
+    event.preventDefault(); // prevent reload
+    document.getElementById("finalMessage").innerHTML =
+        "Registration Successful! 🎉";
+}
+
+// DOM access examples
+function highlightInputs() {
+    let inputs = document.getElementsByTagName("input");
+    for (let i = 0; i < inputs.length; i++) {
+        inputs[i].style.border = "2px solid #2a5298";
+    }
+}
+</script>
+
+</head>
+<body>
+
+<h1 id="welcome"></h1>
+
+<div class="container">
+
+<form onsubmit="submitForm(event)">
+
+<label>Full Name:</label>
+<input type="text" id="name" onkeyup="showName()" required>
+
+<p id="displayName"></p>
+
+<label>Select Ticket Type:</label>
+<select id="ticket" onchange="updatePrice()" required>
+    <option value="">Select</option>
+    <option value="General">General</option>
+    <option value="VIP">VIP</option>
+    <option value="Backstage">Backstage</option>
+</select>
+
+<label>Ticket Price:</label>
+<input type="text" id="price" readonly>
+
+<label>Quantity:</label>
+<input type="number" id="quantity" required>
+
+<button type="button" onclick="calculateTotal()">
+    Calculate Total
+</button>
+
+<div class="result"></div>
+
+<br>
+
+<button type="submit">Submit Registration</button>
+
+</form>
+
+<p id="finalMessage"></p>
+
+<br>
+<button onclick="highlightInputs()">Highlight All Inputs</button>
+
+</div>
+
+</body>
+</html>

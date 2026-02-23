@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Music Concert - Bootstrap Responsive Website</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Smooth Scroll -->
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ================= NAVIGATION BAR ================= -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">🎵 Music Concert</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#register">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contact">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Spacer for fixed navbar -->
+<div style="margin-top: 80px;"></div>
+
+<!-- ================= MAIN CONTENT ================= -->
+<div class="container mt-5">
+
+    <div class="row align-items-center">
+
+        <!-- Left Section -->
+        <div class="col-md-6 mb-4">
+            <h1 class="mb-3">Live Music Concert 2026 🎶</h1>
+
+            <p class="lead">
+                Join us for an unforgettable night filled with music,
+                energy, and excitement! Experience live performances
+                from top artists.
+            </p>
+
+            <!-- Responsive Image -->
+            <img src="banner.png" class="img-fluid rounded shadow mb-4" alt="Concert Banner">
+
+            <!-- Buttons -->
+            <a href="#register" class="btn btn-primary me-2">Book Tickets</a>
+            <a href="#" class="btn btn-outline-dark">Learn More</a>
+        </div>
+
+        <!-- Right Section (Register Form) -->
+        <div class="col-md-6" id="register">
+            <div class="card shadow p-4">
+                <h3 class="mb-3 text-center">Register Now</h3>
+
+                <form>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" placeholder="Full Name" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="email" class="form-control" placeholder="Email Address" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <select class="form-select" required>
+                            <option value="">Select Ticket Type</option>
+                            <option>General</option>
+                            <option>VIP</option>
+                            <option>Backstage</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-success w-100">
+                        Register
+                    </button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ================= CONTACT SECTION ================= -->
+<div class="container mt-5" id="contact">
+    <div class="row">
+        <div class="col text-center">
+            <h4>Contact Us</h4>
+            <p>Email: evangeline@gmail.com</p>
+            <p>Phone: +91 98765 43210</p>
+        </div>
+    </div>
+</div>
+
+<!-- ================= FOOTER ================= -->
+<footer class="bg-dark text-white text-center p-3 mt-4">
+    © 2026 Music Concert | All Rights Reserved
+</footer>
+
+<!-- Bootstrap JS CDN -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

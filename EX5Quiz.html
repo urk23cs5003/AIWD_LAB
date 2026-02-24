@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Quiz App with Timer</title>
+<style>
+    body { font-family: Arial; padding: 20px; background: #f3f4f6; }
+    .container { max-width: 700px; margin: auto; background: white; padding: 20px; border-radius: 8px; }
+    .question { margin-bottom: 15px; }
+    .timer { font-size: 18px; font-weight: bold; color: red; }
+    button { padding: 8px 15px; margin-top: 10px; }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>JavaScript Quiz (10 Seconds)</h2>
+
+    <div class="timer">Time Left: <span id="time">10</span> seconds</div>
+    <p id="warning"></p>
+
+    <form id="quizForm">
+
+        <div class="question">
+            <p>1. JavaScript is?</p>
+            <input type="radio" name="q1" value="a"> Programming Language<br>
+            <input type="radio" name="q1" value="b"> Database<br>
+        </div>
+
+        <div class="question">
+            <p>2. DOM stands for?</p>
+            <input type="radio" name="q2" value="a"> Document Object Model<br>
+            <input type="radio" name="q2" value="b"> Data Object Model<br>
+        </div>
+
+        <div class="question">
+            <p>3. Which keyword declares variable?</p>
+            <input type="radio" name="q3" value="a"> var<br>
+            <input type="radio" name="q3" value="b"> int<br>
+        </div>
+
+        <div class="question">
+            <p>4. setInterval() is used for?</p>
+            <input type="radio" name="q4" value="a"> Repeating task<br>
+            <input type="radio" name="q4" value="b"> Styling<br>
+        </div>
+
+        <div class="question">
+            <p>5. Which method selects by ID?</p>
+            <input type="radio" name="q5" value="a"> getElementById<br>
+            <input type="radio" name="q5" value="b"> queryAll<br>
+        </div>
+
+        <button type="button" onclick="submitQuiz()">Submit</button>
+    </form>
+
+    <h3 id="result"></h3>
+</div>
+
+<script>
+
+let timeLeft = 10;
+
+let correctAnswers = {
+    q1: "a",
+    q2: "a",
+    q3: "a",
+    q4: "a",
+    q5: "a"
+};
+
+let timer = setInterval(function () {
+
+    timeLeft--;
+    document.getElementById("time").innerText = timeLeft;
+
+    if (timeLeft === 5) {
+        document.getElementById("warning").innerText =
+            "Only 5 seconds remaining!";
+    }
+
+    if (timeLeft === 0) {
+        clearInterval(timer);
+        submitQuiz();
+    }
+
+}, 1000);
+
+
+function submitQuiz() {
+
+    clearInterval(timer);
+
+    let score = 0;
+
+    for (let key in correctAnswers) {
+        let selected = document.querySelector(`input[name="${key}"]:checked`);
+        if (selected && selected.value === correctAnswers[key]) {
+            score++;
+        }
+    }
+
+    document.getElementById("result").innerText =
+        "Final Score: " + score + "/5";
+
+    // Disable all options
+    let inputs = document.querySelectorAll("input");
+    inputs.forEach(input => input.disabled = true);
+}
+
+</script>
+
+</body>
+</html>

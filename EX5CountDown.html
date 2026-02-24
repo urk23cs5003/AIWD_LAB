@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Music Concert Registration</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f4f6f8;
+        padding: 20px;
+    }
+
+    h1, h2 {
+        text-align: center;
+    }
+
+    .countdown {
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        color: red;
+        margin-bottom: 20px;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: auto;
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+    }
+
+    input, select, textarea {
+        width: 100%;
+        padding: 8px;
+        margin: 8px 0;
+    }
+
+    button {
+        width: 100%;
+        padding: 10px;
+        background: #2563eb;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    button:disabled {
+        background: gray;
+        cursor: not-allowed;
+    }
+
+    .message {
+        text-align: center;
+        margin-top: 15px;
+        font-weight: bold;
+    }
+</style>
+</head>
+
+<body>
+
+<h1>🎵 Live Music Concert 2026 🎵</h1>
+<h2>Register Before Time Ends!</h2>
+
+<div class="countdown" id="countdown"></div>
+
+<div class="container">
+
+<form id="registrationForm" onsubmit="return submitForm()">
+
+    <label>Full Name:</label>
+    <input type="text" name="fullname" required>
+
+    <label>Email Address:</label>
+    <input type="email" name="email" required>
+
+    <label>Date of Birth:</label>
+    <input type="date" name="dob" required>
+
+    <label>Gender:</label><br>
+    <input type="radio" name="gender" value="Male" required> Male
+    <input type="radio" name="gender" value="Female"> Female
+    <input type="radio" name="gender" value="Other"> Other
+    <br><br>
+
+    <label>Ticket Type:</label>
+    <select name="ticket" required>
+        <option value="">--Select Ticket Type--</option>
+        <option value="General">General</option>
+        <option value="VIP">VIP</option>
+        <option value="Backstage">Backstage Pass</option>
+    </select>
+
+    <label>Additional Comments:</label>
+    <textarea name="comments" rows="4"></textarea>
+
+    <label>Upload ID Proof:</label>
+    <input type="file" name="idproof" accept=".jpg,.png,.pdf" required>
+
+    <button type="submit" id="registerBtn">Register</button>
+
+</form>
+
+<div class="message" id="message"></div>
+
+</div>
+
+<script>
+
+// Set countdown time (1 minute demo)
+let eventDate = new Date().getTime() + (60 * 1000);
+
+let timer = setInterval(function() {
+
+    let now = new Date().getTime();
+    let distance = eventDate - now;
+
+    if (distance <= 0) {
+        clearInterval(timer);
+        document.getElementById("countdown").innerHTML =
+            "Registration Closed";
+
+        document.getElementById("registerBtn").disabled = true;
+        return;
+    }
+
+    let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("countdown").innerHTML =
+        days + "d " + hours + "h "
+        + minutes + "m " + seconds + "s ";
+
+}, 1000);
+
+
+// Form submit
+function submitForm() {
+    document.getElementById("message").innerHTML =
+        "Registration Successful!";
+    return false; // prevent page reload
+}
+
+</script>
+
+</body>
+</html>

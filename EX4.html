@@ -1,151 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Music Concert - DOM Version</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Music Concert DOM & Events</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #1e3c72, #2a5298);
-    color: white;
-    margin: 0;
-    padding: 20px;
-}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            margin: 0;
+            padding: 20px;
+        }
 
-.container {
-    max-width: 600px;
-    margin: auto;
-    background: white;
-    color: black;
-    padding: 20px;
-    border-radius: 10px;
-}
+        h2 {
+            text-align: center;
+            color: #1f2933;
+        }
 
-input, select {
-    width: 100%;
-    padding: 8px;
-    margin: 8px 0;
-}
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
 
-button {
-    width: 100%;
-    padding: 10px;
-    background: #1e3c72;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
+        .box {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+        }
 
-button:hover {
-    background: #2a5298;
-}
+        label {
+            font-weight: bold;
+        }
 
-.result {
-    margin-top: 15px;
-    font-weight: bold;
-    color: green;
-}
-</style>
+        input, select, button {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+        }
 
-<script>
-window.onload = function() {
-    document.getElementById("welcome").innerHTML =
-        "Welcome to Live Music Concert 2026 🎵";
-};
+        button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
 
-// onkeyup event
-function showName() {
-    let name = document.getElementById("name").value;
-    document.getElementById("displayName").innerHTML =
-        "Hello, " + name;
-}
+        button:hover {
+            background: #1d4ed8;
+        }
 
-// onchange event
-function updatePrice() {
-    let ticket = document.getElementById("ticket").value;
-    let priceField = document.getElementById("price");
+        .result {
+            background: #e5e7eb;
+            padding: 10px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
 
-    if (ticket === "General") priceField.value = 500;
-    else if (ticket === "VIP") priceField.value = 1000;
-    else if (ticket === "Backstage") priceField.value = 2000;
-}
-
-// onclick event + calculation
-function calculateTotal() {
-    let price = parseInt(document.getElementById("price").value);
-    let quantity = parseInt(document.getElementById("quantity").value);
-
-    if (!isNaN(price) && !isNaN(quantity)) {
-        let total = price * quantity;
-        document.querySelector(".result").innerHTML =
-            "Total Amount: ₹ " + total;
-    }
-}
-
-// onsubmit event
-function submitForm(event) {
-    event.preventDefault(); // prevent reload
-    document.getElementById("finalMessage").innerHTML =
-        "Registration Successful! 🎉";
-}
-
-// DOM access examples
-function highlightInputs() {
-    let inputs = document.getElementsByTagName("input");
-    for (let i = 0; i < inputs.length; i++) {
-        inputs[i].style.border = "2px solid #2a5298";
-    }
-}
-</script>
-
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+        }
+    </style>
 </head>
-<body>
 
-<h1 id="welcome"></h1>
+<body onload="pageLoaded()">
+
+<h2>MUSIC CONCERT – JavaScript DOM & Events</h2>
 
 <div class="container">
 
-<form onsubmit="submitForm(event)">
+    <!-- TC01, TC02, TC03: DOM Access -->
+    <div class="box">
+        <p id="intro">Welcome to DOM Experiment</p>
+        <p class="demo">Paragraph 1</p>
+        <p class="demo">Paragraph 2</p>
 
-<label>Full Name:</label>
-<input type="text" id="name" onkeyup="showName()" required>
+        <button onclick="changeText()">Change Text</button>
+    </div>
 
-<p id="displayName"></p>
+    <!-- TC04, TC08: onclick & Calculation -->
+    <div class="box">
+        <h3>Simple Calculator (onclick)</h3>
 
-<label>Select Ticket Type:</label>
-<select id="ticket" onchange="updatePrice()" required>
-    <option value="">Select</option>
-    <option value="General">General</option>
-    <option value="VIP">VIP</option>
-    <option value="Backstage">Backstage</option>
-</select>
+        <input type="number" id="num1" placeholder="Enter first number">
+        <input type="number" id="num2" placeholder="Enter second number">
 
-<label>Ticket Price:</label>
-<input type="text" id="price" readonly>
+        <button onclick="calculate()">Calculate</button>
 
-<label>Quantity:</label>
-<input type="number" id="quantity" required>
+        <div class="result" id="calcResult">Result:</div>
+    </div>
 
-<button type="button" onclick="calculateTotal()">
-    Calculate Total
-</button>
+    <!-- TC04, TC07, TC08: onkeyup & DOM update -->
+    <div class="box">
+        <h3>BMI Calculator (onkeyup)</h3>
 
-<div class="result"></div>
+        <input type="number" id="weight" placeholder="Weight (kg)" onkeyup="calculateBMI()">
+        <input type="number" id="height" placeholder="Height (cm)" onkeyup="calculateBMI()">
 
-<br>
+        <div class="result" id="bmiResult">BMI:</div>
+    </div>
 
-<button type="submit">Submit Registration</button>
+    <!-- TC05: onchange -->
+    <div class="box">
+        <h3>Currency Converter (onchange)</h3>
 
-</form>
+        <input type="number" id="amount" placeholder="Enter amount">
+        <select id="currency" onchange="convertCurrency()">
+            <option value="">Select Currency</option>
+            <option value="80">USD to INR</option>
+            <option value="90">EUR to INR</option>
+            <option value="100">GBP to INR</option>
+            <option value="1">INR to INR</option>
+        </select>
 
-<p id="finalMessage"></p>
+        <div class="result" id="currencyResult">Converted Amount:</div>
+    </div>
 
-<br>
-<button onclick="highlightInputs()">Highlight All Inputs</button>
+    <!-- TC05: onsubmit -->
+    <div class="box">
+        <h3>Form Submission (onsubmit)</h3>
+
+        <form onsubmit="return submitForm()">
+            <input type="text" id="username" placeholder="Enter your name">
+            <button type="submit">Submit</button>
+        </form>
+
+        <div class="result" id="formResult"></div>
+    </div>
 
 </div>
+
+<script>
+    /* TC06: onload */
+    function pageLoaded() {
+        document.getElementById("intro").innerHTML += " (Page Loaded)";
+    }
+
+    /* TC01, TC02, TC03: DOM Access */
+    function changeText() {
+        document.getElementById("intro").style.color = "blue";
+
+        let items = document.getElementsByClassName("demo");
+        for (let i = 0; i < items.length; i++) {
+            items[i].innerHTML = "Updated using Class Name";
+        }
+
+        let tags = document.getElementsByTagName("p");
+        tags[0].style.fontWeight = "bold";
+    }
+
+    /* TC04, TC08 */
+    function calculate() {
+        let a = parseFloat(document.getElementById("num1").value);
+        let b = parseFloat(document.getElementById("num2").value);
+        let result = a + b;
+
+        document.getElementById("calcResult").innerHTML = "Result: " + result;
+    }
+
+    /* TC04, TC07, TC08 */
+    function calculateBMI() {
+        let w = document.getElementById("weight").value;
+        let h = document.getElementById("height").value / 100;
+
+        if (w && h) {
+            let bmi = (w / (h * h)).toFixed(2);
+            let status = "Normal";
+
+            if (bmi < 18) status = "Underweight";
+            else if (bmi >= 25 && bmi < 30) status = "Overweight";
+            else if (bmi >= 30) status = "Obese";
+
+            document.getElementById("bmiResult").innerHTML =
+                "BMI: " + bmi + " (" + status + ")";
+        }
+    }
+
+    /* TC05 */
+    function convertCurrency() {
+        let amount = document.getElementById("amount").value;
+        let rate = document.getElementById("currency").value;
+
+        if (amount && rate) {
+            document.getElementById("currencyResult").innerHTML =
+                "Converted Amount: " + (amount * rate);
+        }
+    }
+
+    /* TC05 */
+    function submitForm() {
+        let name = document.getElementById("username").value;
+        document.getElementById("formResult").innerHTML =
+            "Form submitted by " + name;
+        return false; // prevent reload
+    }
+</script>
 
 </body>
 </html>

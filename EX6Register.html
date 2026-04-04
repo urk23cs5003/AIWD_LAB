@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Event Registration</title>
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        .error {
+            color: red;
+        }
+
+        .success {
+            color: green;
+        }
+
+        input {
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Event Registration Form</h2>
+
+<form id="regForm">
+    Participant Name:<br>
+    <input type="text" id="name"><br>
+
+    Email:<br>
+    <input type="text" id="email"><br>
+
+    Event Name:<br>
+    <input type="text" id="eventName" readonly><br>
+
+    Mobile Number:<br>
+    <input type="text" id="mobile"><br><br>
+
+    <button type="button" id="submitBtn">Submit</button>
+    <button type="button" id="resetBtn">Reset</button>
+</form>
+
+<p id="message"></p>
+
+<script>
+$(document).ready(function(){
+
+    // Get event from sessionStorage
+    var eventTitle = sessionStorage.getItem("selectedEvent");
+
+    if(eventTitle){
+        $("#eventName").val(eventTitle);
+    }
+
+    $("#submitBtn").click(function(){
+
+        var name = $("#name").val().trim();
+        var email = $("#email").val().trim();
+        var eventName = $("#eventName").val().trim();
+        var mobile = $("#mobile").val().trim();
+
+        var emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+        var mobilePattern = /^[0-9]{10,}$/;
+
+        $("#message").text("").removeClass("error success");
+        $("input").css("border", "1px solid black");
+
+        if(name == "" || email == "" || eventName == "" || mobile == ""){
+            $("#message").text("All fields are required")
+                         .addClass("error");
+
+            $("input").each(function(){
+                if($(this).val().trim() == ""){
+                    $(this).css("border", "2px solid red");
+                }
+            });
+            return;
+        }
+
+        if(!emailPattern.test(email)){
+            $("#message").text("Invalid Email Format")
+                         .addClass("error");
+            $("#email").css("border", "2px solid red");
+            return;
+        }
+
+        if(!mobilePattern.test(mobile)){
+            $("#message").text("Mobile number must contain at least 10 digits")
+                         .addClass("error");
+            $("#mobile").css("border", "2px solid red");
+            return;
+        }
+
+        // Success
+        $("#message").text("Registration Successful for " + name)
+                     .addClass("success");
+
+        $("#submitBtn").prop("disabled", true)
+                       .text("Registered");
+    });
+
+    $("#resetBtn").click(function(){
+        $("#regForm")[0].reset();
+        $("#message").text("").removeClass("error success");
+        $("input").css("border", "1px solid black");
+        $("#submitBtn").prop("disabled", false)
+                       .text("Submit");
+    });
+
+});
+</script>
+
+</body>
+</html>

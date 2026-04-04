@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Event Management</title>
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        .event {
+            border: 1px solid black;
+            padding: 15px;
+            margin: 15px;
+            border-radius: 8px;
+        }
+
+        .details {
+            display: none;
+            margin-top: 10px;
+        }
+
+        button {
+            padding: 5px 10px;
+            margin-top: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Upcoming Events</h2>
+
+<div class="event">
+    <h3>Tech Conference 2026</h3>
+    <p>Date: March 15, 2026</p>
+    <button class="toggleBtn">Show Details</button>
+
+    <div class="details">
+        <p>Location: City Hall</p>
+        <p>Speaker: Industry Experts</p>
+        <button class="registerBtn">Register</button>
+    </div>
+</div>
+
+<div class="event">
+    <h3>Music Fest 2026</h3>
+    <p>Date: April 10, 2026</p>
+    <button class="toggleBtn">Show Details</button>
+
+    <div class="details">
+        <p>Location: Open Ground</p>
+        <p>Live Band Performance</p>
+        <button class="registerBtn">Register</button>
+    </div>
+</div>
+
+<div class="event">
+    <h3>Art Workshop</h3>
+    <p>Date: May 5, 2026</p>
+    <button class="toggleBtn">Show Details</button>
+
+    <div class="details">
+        <p>Location: Art Studio</p>
+        <p>Painting & Craft Training</p>
+        <button class="registerBtn">Register</button>
+    </div>
+</div>
+
+<script>
+$(document).ready(function(){
+
+    $(".toggleBtn").click(function(){
+
+        var eventDiv = $(this).closest(".event");
+
+        // slideToggle effect
+        eventDiv.find(".details").slideToggle();
+
+        // Change button text
+        if($(this).text() == "Show Details"){
+            $(this).text("Hide Details");
+        } else {
+            $(this).text("Show Details");
+        }
+
+        // Change background of selected event
+        $(".event").css("background-color", "white");
+        eventDiv.css("background-color", "#e6f2ff");
+
+        // Highlight corresponding h3
+        $(".event h3").css("color", "black");
+        eventDiv.find("h3").css("color", "blue");
+
+        // Alert event title
+        var title = eventDiv.find("h3").text();
+        alert("Selected Event: " + title);
+    });
+
+    $(".registerBtn").click(function(){
+
+        var title = $(this).closest(".event").find("h3").text();
+
+        // Store event name
+        sessionStorage.setItem("selectedEvent", title);
+
+        // Redirect
+        window.location.href = "EX6Register.html";
+    });
+
+});
+</script>
+
+</body>
+</html>
